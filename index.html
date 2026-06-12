@@ -42,7 +42,7 @@
             color: inherit;
         }
 
-        /* --- Header & Navigation --- */
+        /* --- Header & Navigation (FIXED STRUCTURE) --- */
         header {
             position: fixed;
             top: 0;
@@ -58,25 +58,31 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Logo Placeholder */
-        .logo-placeholder {
-            height: 45px;
-            width: 180px;
-            border: 1px dashed var(--color-text-muted);
+        /* Premium Logo Container Layout */
+        .logo-wrapper {
+            width: 200px;
+            height: 50px;
+            border-radius: 6px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-text-muted);
-            border-radius: 4px;
+            background-color: var(--color-surface);
+            border: 1px dashed var(--color-text-muted);
+            transition: var(--transition);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Keeps your logo image from distorting */
+            padding: 4px;
         }
 
         nav ul {
@@ -339,6 +345,11 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
             .hero-split {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -350,7 +361,12 @@
                 font-size: 2.5rem;
             }
             nav ul {
-                gap: 1.5rem;
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            main {
+                margin-top: 140px; /* More offset on mobile for wrapped header */
             }
         }
     </style>
@@ -359,10 +375,11 @@
 
     <!-- Header containing Navigation and Logo Space -->
     <header>
-        <div class="w-full bg-stone-200 aspect-[21/9] rounded overflow-hidden shadow-inner border border-stone-200 relative group">
-                <img src="color-painting-logo.png" alt="Premium curated landscape design showcase showcasing manicured lawn integration" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-stone-900/10 transition-colors group-hover:bg-transparent"></div>
-        </div>
+        <div class="nav-container">
+            <!-- Space Reserved for Logo -->
+            <div class="logo-wrapper">
+                <img src="color-painting-logo.png" alt="Colorful Painting Logo">
+            </div>
             
             <nav>
                 <ul>
