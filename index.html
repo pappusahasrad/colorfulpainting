@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Painting | Premium Residential & Commercial Painting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Brand Identity & Variables --- */
+        :root {
+            --color-bg: #FCFBF9;         /* Warm, premium off-white */
+            --color-text: #1C1B19;       /* Deep charcoal for readability */
+            --color-text-muted: #62605C; /* Elegant muted gray */
+            --color-accent: #E65F3E;     /* Vibrant, high-converting coral/orange */
+            --color-accent-hover: #CD4B2B;
+            --color-surface: #F3F1ED;    /* Soft contrast background */
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(252, 251, 249, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo Placeholder */
+        .logo-placeholder {
+            height: 45px;
+            width: 180px;
+            border: 1px dashed var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            border-radius: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        nav a:hover, nav a.active {
+            opacity: 1;
+            color: var(--color-accent);
+        }
+
+        /* --- Conversion Button (CTA) --- */
+        .btn-cta {
+            background-color: var(--color-accent);
+            color: #FFFFFF;
+            padding: 0.8rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(230, 95, 62, 0.2);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 95, 62, 0.3);
+        }
+
+        /* --- Main Content Layout --- */
+        main {
+            margin-top: 90px; /* Offset for fixed header */
+            min-height: calc(100vh - 90px - 200px);
+        }
+
+        .page {
+            display: none; /* Hidden by default, toggled via JS */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Typography Elements --- */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 3.5rem;
+        }
+
+        /* --- Home Page Styles --- */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .differentiation-statement {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            line-height: 1.4;
+            color: var(--color-text);
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background-color: var(--color-surface);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        /* --- Services Page Styles --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background-color: var(--color-surface);
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background-color: #FFFFFF;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Gallery Page Styles --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--color-surface);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px dashed rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--color-accent);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #FFFFFF;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--color-text);
+            text-transform: none;
+            letter-spacing: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Testimonials Page Styles --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 2.5rem;
+        }
+
+        .stars {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .quote {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .client-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .client-meta {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* --- Conversion Banner Footer --- */
+        .conversion-banner {
+            background-color: var(--color-surface);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .banner-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .banner-content h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .banner-content p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-image-placeholder {
+                height: 350px;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header containing Navigation and Logo Space -->
+    <header>
+        <div class="nav-container">
+            <!-- Space Reserved for Logo -->
+            <div class="logo-placeholder">
+                [ Logo Space Here ]
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" onclick="switchPage('home', event)">Home</a></li>
+                    <li><a href="#" onclick="switchPage('services', event)">Services</a></li>
+                    <li><a href="#" onclick="switchPage('gallery', event)">Our Work</a></li>
+                    <li><a href="#" onclick="switchPage('testimonials', event)">Testimonials</a></li>
+                    <li><button class="btn-cta" onclick="openLeadForm()">Get a Free Quote</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area Container -->
+    <main>
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page active-page">
+            <div class="hero-split">
+                <div>
+                    <h1 class="section-title">Wallpapers fade, but pristine craftsmanship inspires daily.</h1>
+                    
+                    <!-- Sentence about why the company is different -->
+                    <p class="differentiation-statement">
+                        Unlike traditional painters who simply rush through coats, we treat your space as a canvas for clean lines, uncompromising preparation, and bespoke color curation that transforms houses into personal sanctuaries.
+                    </p>
+                    
+                    <p style="color: var(--color-text-muted); margin-bottom: 2.5rem; max-width: 500px;">
+                        Experience an intentional approach to painting. From zero-VOC premium pigments to meticulous site protection, we deliver a flawless finish without the mess.
+                    </p>
+                    <button class="btn-cta" onclick="openLeadForm()">Book Your Color Consultation</button>
+                </div>
+                <div>
+                    <div class="hero-image-placeholder">
+                        Placeholder: Hero Image (e.g., Elegantly Painted Modern Living Space)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES PAGE -->
+        <section id="services" class="page">
+            <h2 class="section-title">Architectural Coatings & Finishes</h2>
+            <p class="section-subtitle">We specialize in precise execution across interior and exterior surfaces, using premium finishes tailored to sustain weather and daily life.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Bespoke Interiors</h3>
+                    <p>Meticulous wall, ceiling, and trim execution using ultra-smooth techniques. Ideal for high-visibility living areas, custom built-ins, and delicate crown moldings.</p>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                </div>
+                <div class="service-card">
+                    <h3>Protective Exteriors</h3>
+                    <p>Advanced surface washing, rigorous scraping, and weather-resistant sealing. Engineered to protect your home’s architectural integrity against the elements.</p>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                </div>
+                <div class="service-card">
+                    <h3>Cabinetry & Fine Millwork</h3>
+                    <p>Factory-grade spray finishes that breathe new life into kitchen and bathroom cabinetry. Smooth to the touch, highly durable, and mirror-flat.</p>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY PAGE -->
+        <section id="gallery" class="page">
+            <h2 class="section-title">Recent Transformations</h2>
+            <p class="section-subtitle">A curated view of our residential and commercial projects. Click any project to discuss a similar finish for your property.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 1
+                    <div class="gallery-label">Modern Minimalist Kitchen</div>
+                </div>
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 2
+                    <div class="gallery-label">Contemporary Accent Walls</div>
+                </div>
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 3
+                    <div class="gallery-label">Heritage Exterior Restorations</div>
+                </div>
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 4
+                    <div class="gallery-label">Matte Finished Master Suites</div>
+                </div>
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 5
+                    <div class="gallery-label">Fine Millwork & Trim Coatings</div>
+                </div>
+                <div class="gallery-item" onclick="openLeadForm()">
+                    Placeholder: Project Image 6
+                    <div class="gallery-label">Commercial Retail Spaces</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS PAGE -->
+        <section id="testimonials" class="page">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Read unfiltered feedback from homeowners and property managers who valued clean execution and transparent communication.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"The team at Colorful Painting completely altered our perception of home contracting. They arrived exactly on time, protected our artwork meticulously, and the final finish on our vaulted ceilings is utterly flawless."</p>
+                    <p class="client-name">Eleanor Vance</p>
+                    <p class="client-meta">Residential Client • Living Room & Foyer</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Their attention to detail on our kitchen cabinetry spray job was incredible. There isn't a single streak or drip to be found. It looks entirely factory-original, saving us thousands compared to replacement."</p>
+                    <p class="client-name">Marcus Brody</p>
+                    <p class="client-meta">Cabinetry Restoration Client</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Crisp lines, zero dust, and excellent communication throughout the project. They provided an itemized quote and stayed exactly on budget. Highly recommended for premium properties."</p>
+                    <p class="client-name">Dr. Aris Thorne</p>
+                    <p class="client-meta">Commercial Client • Executive Suites</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Action Conversion Banner -->
+    <section class="conversion-banner">
+        <div class="banner-content">
+            <h2>Ready to elevate your space?</h2>
+            <p>Schedule a complimentary assessment. We will walk your property, evaluate your surfaces, and provide a comprehensive, transparent proposal.</p>
+            <button class="btn-cta" onclick="openLeadForm()">Request An Estimate</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Colorful Painting Co. All rights reserved. Craftsmanship Guaranteed.</p>
+    </footer>
+
+    <!-- --- JavaScript Router & Lead Management --- -->
+    <script>
+        // Simple client-side router to switch pages cleanly
+        function switchPage(pageId, event) {
+            if (event) event.preventDefault();
+            
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active-page'));
+            
+            // Show requested page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+            
+            // Update active link styling
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+
+            // Scroll cleanly back to the top of the content area
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Action function to prompt user for conversion info
+        function openLeadForm() {
+            const name = prompt("Let's schedule your consultation! What is your name?");
+            if (name) {
+                const contact = prompt(`Hi ${name}, what is the best phone number or email address to reach you at?`);
+                if (contact) {
+                    alert(`Thank you, ${name}! One of our estimators will reach out to you at "${contact}" within 24 business hours to finalize your appointment.`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
