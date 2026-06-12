@@ -63,26 +63,37 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        
         /* Premium Logo Container Layout */
         .logo-wrapper {
-            width: 200px;
+            width: auto; /* Changed from 200px to accommodate text */
             height: 50px;
             border-radius: 6px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: var(--color-surface);
-            border: 1px dashed var(--color-text-muted);
+            justify-content: flex-start; /* Aligns items to the left */
+            gap: 0.75rem; /* Spaces out the logo image and the text */
+            background-color: transparent; /* Removes grey fill if you prefer it blending */
+            border: none; /* Removes the dashed border box for a cleaner look */
             transition: var(--transition);
         }
 
         .logo-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Keeps your logo image from distorting */
+            height: 100%; /* Spans full height of wrapper */
+            width: auto; /* Automatically scales width proportionally */
+            object-fit: contain;
             padding: 4px;
+        }
+
+        /* Styling for your brand name */
+        .brand-name {
+            font-family: var(--font-sans);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.02em;
+            white-space: nowrap; /* Prevents text from wrapping to a second line */
         }
 
         nav ul {
@@ -399,6 +410,7 @@
             <!-- Space Reserved for Logo -->
             <div class="logo-wrapper">
                 <img src="colorful-painting-logo.png" alt="Colorful Painting Logo">
+                <span class="brand-name">Colorful Painting</span>
             </div>
             
             <nav>
