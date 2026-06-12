@@ -310,6 +310,26 @@
             color: var(--color-text-muted);
         }
 
+        /* --- Form Embed Page Styles --- */
+        .form-container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container iframe {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            background: #FFFFFF;
+        }
+
         /* --- Conversion Banner Footer --- */
         .conversion-banner {
             background-color: var(--color-surface);
@@ -378,16 +398,16 @@
         <div class="nav-container">
             <!-- Space Reserved for Logo -->
             <div class="logo-wrapper">
-                <img src="colorful-painting-logo.png" alt="Colorful Painting Logo">
+                <img src="color-painting-logo.png" alt="Colorful Painting Logo">
             </div>
             
             <nav>
                 <ul>
-                    <li><a href="#" class="active" onclick="switchPage('home', event)">Home</a></li>
-                    <li><a href="#" onclick="switchPage('services', event)">Services</a></li>
-                    <li><a href="#" onclick="switchPage('gallery', event)">Our Work</a></li>
-                    <li><a href="#" onclick="switchPage('testimonials', event)">Testimonials</a></li>
-                    <li><button class="btn-cta" onclick="openLeadForm()">Get a Free Quote</button></li>
+                    <li><a href="#" id="nav-home" class="active" onclick="switchPage('home', event)">Home</a></li>
+                    <li><a href="#" id="nav-services" onclick="switchPage('services', event)">Services</a></li>
+                    <li><a href="#" id="nav-gallery" onclick="switchPage('gallery', event)">Our Work</a></li>
+                    <li><a href="#" id="nav-testimonials" onclick="switchPage('testimonials', event)">Testimonials</a></li>
+                    <li><button class="btn-cta" onclick="switchPage('estimate', event)">Get a Free Quote</button></li>
                 </ul>
             </nav>
         </div>
@@ -410,11 +430,11 @@
                     <p style="color: var(--color-text-muted); margin-bottom: 2.5rem; max-width: 500px;">
                         Experience an intentional approach to painting. From zero-VOC premium pigments to meticulous site protection, we deliver a flawless finish without the mess.
                     </p>
-                    <button class="btn-cta" onclick="openLeadForm()">Book Your Color Consultation</button>
+                    <button class="btn-cta" onclick="switchPage('estimate', event)">Book Your Color Consultation</button>
                 </div>
                 <div>
                     <div class="hero-image-placeholder">
-                         <img src="paint_before_after.png" alt="Colorful Painting Logo">
+                        Placeholder: Hero Image (e.g., Elegantly Painted Modern Living Space)
                     </div>
                 </div>
             </div>
@@ -429,17 +449,17 @@
                 <div class="service-card">
                     <h3>Bespoke Interiors</h3>
                     <p>Meticulous wall, ceiling, and trim execution using ultra-smooth techniques. Ideal for high-visibility living areas, custom built-ins, and delicate crown moldings.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Protective Exteriors</h3>
                     <p>Advanced surface washing, rigorous scraping, and weather-resistant sealing. Engineered to protect your home’s architectural integrity against the elements.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Cabinetry & Fine Millwork</h3>
                     <p>Factory-grade spray finishes that breathe new life into kitchen and bathroom cabinetry. Smooth to the touch, highly durable, and mirror-flat.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="openLeadForm()">Inquire &rarr;</a>
+                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
                 </div>
             </div>
         </section>
@@ -450,27 +470,27 @@
             <p class="section-subtitle">A curated view of our residential and commercial projects. Click any project to discuss a similar finish for your property.</p>
             
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 1
                     <div class="gallery-label">Modern Minimalist Kitchen</div>
                 </div>
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 2
                     <div class="gallery-label">Contemporary Accent Walls</div>
                 </div>
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 3
                     <div class="gallery-label">Heritage Exterior Restorations</div>
                 </div>
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 4
                     <div class="gallery-label">Matte Finished Master Suites</div>
                 </div>
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 5
                     <div class="gallery-label">Fine Millwork & Trim Coatings</div>
                 </div>
-                <div class="gallery-item" onclick="openLeadForm()">
+                <div class="gallery-item" onclick="switchPage('estimate', event)">
                     Placeholder: Project Image 6
                     <div class="gallery-label">Commercial Retail Spaces</div>
                 </div>
@@ -504,6 +524,18 @@
             </div>
         </section>
 
+        <!-- NEW PAGE: REQUEST AN ESTIMATE (GOOGLE FORM EMBED) -->
+        <section id="estimate" class="page">
+            <h2 class="section-title">Request An Estimate</h2>
+            <p class="section-subtitle">Tell us about your upcoming painting project. Fill out our brief inquiry form below, and our project estimators will review your details immediately.</p>
+            
+            <div class="form-container">
+                <!-- PLACEHOLDER FOR GOOGLE FORM EMBED -->
+                <!-- Note: Replace the 'src' attribute below with your unique Google Form iframe link -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD_YOUR_FORM_ID_HERE/viewform?embedded=true" height="850" frameborder="0" marginheight="0" marginwidth="0">Loading project form…</iframe>
+            </div>
+        </section>
+
     </main>
 
     <!-- Bottom Action Conversion Banner -->
@@ -511,7 +543,7 @@
         <div class="banner-content">
             <h2>Ready to elevate your space?</h2>
             <p>Schedule a complimentary assessment. We will walk your property, evaluate your surfaces, and provide a comprehensive, transparent proposal.</p>
-            <button class="btn-cta" onclick="openLeadForm()">Request An Estimate</button>
+            <button class="btn-cta" onclick="switchPage('estimate', event)">Request An Estimate</button>
         </div>
     </section>
 
@@ -535,27 +567,18 @@
                 targetPage.classList.add('active-page');
             }
             
-            // Update active link styling
+            // Update active link styling across main nav links
             const navLinks = document.querySelectorAll('nav a');
             navLinks.forEach(link => link.classList.remove('active'));
             
-            if (event && event.target) {
-                event.target.classList.add('active');
+            // Highlight matching nav link if page matches main menu items
+            const activeNavLink = document.getElementById('nav-' + pageId);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
             }
 
             // Scroll cleanly back to the top of the content area
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Action function to prompt user for conversion info
-        function openLeadForm() {
-            const name = prompt("Let's schedule your consultation! What is your name?");
-            if (name) {
-                const contact = prompt(`Hi ${name}, what is the best phone number or email address to reach you at?`);
-                if (contact) {
-                    alert(`Thank you, ${name}! One of our estimators will reach out to you at "${contact}" within 24 business hours to finalize your appointment.`);
-                }
-            }
         }
     </script>
 </body>
