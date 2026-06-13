@@ -6,7 +6,7 @@
     <title>Colorful Painting | Premium Residential & Commercial Painting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* --- Brand Identity & Variables --- */
@@ -19,7 +19,7 @@
             --color-surface: #F3F1ED;    /* Soft contrast background */
             --font-sans: 'Plus Jakarta Sans', sans-serif;
             --font-serif: 'Playfair Display', serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* --- Global Reset & Base Styles --- */
@@ -29,12 +29,17 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth; /* Enables elegant native scrolling */
+        }
+
         body {
             font-family: var(--font-sans);
             background-color: var(--color-bg);
             color: var(--color-text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         a {
@@ -42,13 +47,13 @@
             color: inherit;
         }
 
-        /* --- Header & Navigation (FIXED STRUCTURE) --- */
+        /* --- Header & Navigation --- */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(252, 251, 249, 0.85);
+            background-color: rgba(252, 251, 249, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
@@ -64,36 +69,33 @@
             align-items: center;
         }
         
-        /* Premium Logo Container Layout */
         .logo-wrapper {
-            width: auto; /* Changed from 200px to accommodate text */
+            width: auto;
             height: 50px;
             border-radius: 6px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Aligns items to the left */
-            gap: 0.75rem; /* Spaces out the logo image and the text */
-            background-color: transparent; /* Removes grey fill if you prefer it blending */
-            border: none; /* Removes the dashed border box for a cleaner look */
-            transition: var(--transition);
+            justify-content: flex-start;
+            gap: 0.75rem;
+            background-color: transparent;
+            border: none;
         }
 
         .logo-wrapper img {
-            height: 100%; /* Spans full height of wrapper */
-            width: auto; /* Automatically scales width proportionally */
+            height: 100%;
+            width: auto;
             object-fit: contain;
             padding: 4px;
         }
 
-        /* Styling for your brand name */
         .brand-name {
             font-family: var(--font-sans);
             font-size: 1.35rem;
             font-weight: 700;
             color: var(--color-text);
             letter-spacing: -0.02em;
-            white-space: nowrap; /* Prevents text from wrapping to a second line */
+            white-space: nowrap;
         }
 
         nav ul {
@@ -136,27 +138,26 @@
             box-shadow: 0 6px 20px rgba(230, 95, 62, 0.3);
         }
 
-        /* --- Main Content Layout --- */
+        /* --- Main Scrollable Layout --- */
         main {
-            margin-top: 90px; /* Offset for fixed header */
-            min-height: calc(100vh - 90px - 200px);
+            margin-top: 80px; 
         }
 
-        .page {
-            display: none; /* Hidden by default, toggled via JS */
+        /* --- Core Section Structure & Animations --- */
+        .section-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 5rem 2rem;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            padding: 6rem 2rem;
+            /* Scroll animation baseline setup */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .page.active-page {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* This class will trigger via JavaScript when scrolled into view */
+        .section-wrapper.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- Typography Elements --- */
@@ -176,7 +177,7 @@
             margin-bottom: 3.5rem;
         }
 
-        /* --- Home Page Styles --- */
+        /* --- Home/Hero Section --- */
         .hero-split {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
@@ -196,22 +197,22 @@
             font-style: italic;
         }
 
-        .hero-image-placeholder {
+        .hero-image-container {
             width: 100%;
             height: 500px;
             background-color: var(--color-surface);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: 1px dashed rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
 
-        /* --- Services Page Styles --- */
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Services Section --- */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -243,7 +244,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- Gallery Page Styles --- */
+        /* --- Gallery Section --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -256,6 +257,25 @@
             overflow: hidden;
             background-color: var(--color-surface);
             height: 300px;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -264,12 +284,7 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             border: 1px dashed rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-            border-color: var(--color-accent);
+            border-radius: 8px;
         }
 
         .gallery-label {
@@ -281,12 +296,11 @@
             border-radius: 4px;
             font-weight: 600;
             color: var(--color-text);
-            text-transform: none;
-            letter-spacing: 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 2;
         }
 
-        /* --- Testimonials Page Styles --- */
+        /* --- Testimonials Section --- */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -321,7 +335,7 @@
             color: var(--color-text-muted);
         }
 
-        /* --- Form Embed Page Styles --- */
+        /* --- Form Embed Section --- */
         .form-container {
             max-width: 760px;
             margin: 0 auto;
@@ -341,12 +355,11 @@
             background: #FFFFFF;
         }
 
-        /* --- Conversion Banner Footer --- */
+        /* --- Bottom Conversion Banner --- */
         .conversion-banner {
             background-color: var(--color-surface);
             padding: 5rem 2rem;
             text-align: center;
-            margin-top: 5rem;
         }
 
         .banner-content {
@@ -372,9 +385,10 @@
             font-size: 0.85rem;
             color: var(--color-text-muted);
             border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: var(--color-bg);
         }
 
-        /* --- Responsive Design --- */
+        /* --- Responsive Modifications --- */
         @media (max-width: 900px) {
             .nav-container {
                 flex-direction: column;
@@ -385,7 +399,7 @@
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            .hero-image-placeholder {
+            .hero-image-container {
                 height: 350px;
             }
             .section-title {
@@ -397,17 +411,18 @@
                 justify-content: center;
             }
             main {
-                margin-top: 140px; /* More offset on mobile for wrapped header */
+                margin-top: 140px; 
+            }
+            .section-wrapper {
+                padding: 4rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header containing Navigation and Logo Space -->
     <header>
         <div class="nav-container">
-            <!-- Space Reserved for Logo -->
             <div class="logo-wrapper">
                 <img src="colorful-painting-logo.png" alt="Colorful Painting Logo">
                 <span class="brand-name">Colorful Painting</span>
@@ -415,26 +430,23 @@
             
             <nav>
                 <ul>
-                    <li><a href="#" id="nav-home" class="active" onclick="switchPage('home', event)">Home</a></li>
-                    <li><a href="#" id="nav-services" onclick="switchPage('services', event)">Services</a></li>
-                    <li><a href="#" id="nav-gallery" onclick="switchPage('gallery', event)">Our Work</a></li>
-                    <li><a href="#" id="nav-testimonials" onclick="switchPage('testimonials', event)">Testimonials</a></li>
-                    <li><button class="btn-cta" onclick="switchPage('estimate', event)">Get a Free Quote</button></li>
+                    <li><a href="#home" id="nav-home" class="active">Home</a></li>
+                    <li><a href="#services" id="nav-services">Services</a></li>
+                    <li><a href="#gallery" id="nav-gallery">Our Work</a></li>
+                    <li><a href="#testimonials" id="nav-testimonials">Testimonials</a></li>
+                    <li><a href="#estimate" class="btn-cta" style="color: #ffffff; opacity: 1;">Get a Free Quote</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area Container -->
     <main>
 
-        <!-- HOME PAGE -->
-        <section id="home" class="page active-page">
+        <section id="home" class="section-wrapper">
             <div class="hero-split">
                 <div>
                     <h1 class="section-title">Wallpapers fade, but pristine craftsmanship inspires daily.</h1>
                     
-                    <!-- Sentence about why the company is different -->
                     <p class="differentiation-statement">
                         Unlike traditional painters who simply rush through coats, we treat your space as a canvas for clean lines, uncompromising preparation, and bespoke color curation that transforms houses into personal sanctuaries.
                     </p>
@@ -442,18 +454,17 @@
                     <p style="color: var(--color-text-muted); margin-bottom: 2.5rem; max-width: 500px;">
                         Experience an intentional approach to painting. From zero-VOC premium pigments to meticulous site protection, we deliver a flawless finish without the mess.
                     </p>
-                    <button class="btn-cta" onclick="switchPage('estimate', event)">Book Your Color Consultation</button>
+                    <a href="#estimate" class="btn-cta">Book Your Color Consultation</a>
                 </div>
                 <div>
-                    <div class="hero-image-placeholder">
-                        <img src="paint_before_after.png" alt="Colorful Painting Logo">
+                    <div class="hero-image-container">
+                        <img src="paint_before_after.png" alt="Pristine interior painting finish showcase">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES PAGE -->
-        <section id="services" class="page">
+        <section id="services" class="section-wrapper">
             <h2 class="section-title">Architectural Coatings & Finishes</h2>
             <p class="section-subtitle">We specialize in precise execution across interior and exterior surfaces, using premium finishes tailored to sustain weather and daily life.</p>
             
@@ -461,81 +472,79 @@
                 <div class="service-card">
                     <h3>Interior and Exterior Painting</h3>
                     <p>Perfectly styled and colored anywhere you want.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
-                    <h3>Residential and Comercial Buildings</h3>
-                    <p>We paint and do comercial and residential buildings, so you can choose us no matter what.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <h3>Residential and Commercial Buildings</h3>
+                    <p>We paint and do commercial and residential buildings, so you can choose us no matter what.</p>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Wood Repair and Side Replacements</h3>
                     <p>We repair wood floors, and the sides of your home.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Fence Staining and Deck Staining</h3>
                     <p>We stain the decks of your home so you can get the perfect finish. We also stain fences whatever color you think fits your home.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Kitchen Cabinet Refinishing</h3>
-                    <p>We refinish your interior to perfection. Do you have an kitchen that needs a refinish? Let us know.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <p>We refinish your interior to perfection. Do you have a kitchen that needs a refinish? Let us know.</p>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
-                    <h3>Popcorn Celings and Wallpaper Removal</h3>
-                    <p>Removing popcorn celings, and removing wallpapers from your walls to bring back your homes true elegance. </p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <h3>Popcorn Ceilings and Wallpaper Removal</h3>
+                    <p>Removing popcorn ceilings, and removing wallpapers from your walls to bring back your home's true elegance.</p>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
-                    <h3>Drywall Instalation</h3>
+                    <h3>Drywall Installation</h3>
                     <p>We install high-grade drywalls so your home can stay neat.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
                 <div class="service-card">
                     <h3>Powerwash</h3>
                     <p>Powerwashing the outside of your home can clear up lots of dirt that has deposited for years. It will bring back a new elevated look to your home.</p>
-                    <a href="#" style="font-weight:600; color:var(--color-accent);" onclick="switchPage('estimate', event)">Inquire &rarr;</a>
+                    <a href="#estimate" style="font-weight:600; color:var(--color-accent);">Inquire &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- GALLERY PAGE -->
-        <section id="gallery" class="page">
+        <section id="gallery" class="section-wrapper">
             <h2 class="section-title">Recent Transformations</h2>
             <p class="section-subtitle">A curated view of our residential and commercial projects. Click any project to discuss a similar finish for your property.</p>
             
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                   <img src="paint_before_after.png" alt="Colorful Painting Logo">
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <img src="paint_before_after.png" alt="Modern Minimalist Kitchen Transformation">
                     <div class="gallery-label">Modern Minimalist Kitchen</div>
                 </div>
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                    <img src="Screenshot 2026-06-12 165245.png" alt="Colorful Painting Logo">
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <img src="Screenshot 2026-06-12 165245.png" alt="Repainted Building Exterior Finish">
                     <div class="gallery-label">Repainted Building</div>
                 </div>
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                    Placeholder: Project Image 3
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <div class="gallery-placeholder">Project Image 3 Placeholder</div>
                     <div class="gallery-label">Heritage Exterior Restorations</div>
                 </div>
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                    Placeholder: Project Image 4
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <div class="gallery-placeholder">Project Image 4 Placeholder</div>
                     <div class="gallery-label">Matte Finished Master Suites</div>
                 </div>
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                    Placeholder: Project Image 5
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <div class="gallery-placeholder">Project Image 5 Placeholder</div>
                     <div class="gallery-label">Fine Millwork & Trim Coatings</div>
                 </div>
-                <div class="gallery-item" onclick="switchPage('estimate', event)">
-                    Placeholder: Project Image 6
+                <div class="gallery-item" onclick="location.href='#estimate'">
+                    <div class="gallery-placeholder">Project Image 6 Placeholder</div>
                     <div class="gallery-label">Commercial Retail Spaces</div>
                 </div>
             </div>
         </section>
 
-        <!-- TESTIMONIALS PAGE -->
-        <section id="testimonials" class="page">
+        <section id="testimonials" class="section-wrapper">
             <h2 class="section-title">What Our Clients Say</h2>
             <p class="section-subtitle">Read unfiltered feedback from homeowners and property managers who valued clean execution and transparent communication.</p>
             
@@ -561,62 +570,73 @@
             </div>
         </section>
 
-        <!-- NEW PAGE: REQUEST AN ESTIMATE (GOOGLE FORM EMBED) -->
-        <section id="estimate" class="page">
+        <section id="estimate" class="section-wrapper">
             <h2 class="section-title">Request An Estimate</h2>
             <p class="section-subtitle">Tell us about your upcoming painting project. Fill out our brief inquiry form below, and our project estimators will review your details immediately.</p>
             
             <div class="form-container">
-                <!-- PLACEHOLDER FOR GOOGLE FORM EMBED -->
-                <!-- Note: Replace the 'src' attribute below with your unique Google Form iframe link -->
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd-rEWgalLX4qKh-CtLycSt5pTIfnGQU6cRirzYD0TwO95QQQ/viewform?embedded=true" height="850" frameborder="0" marginheight="0" marginwidth="0">Loading project form…</iframe>
+            </div>
+        </section>
+
+        <section class="conversion-banner">
+            <div class="banner-content">
+                <h2>Ready to elevate your space?</h2>
+                <p>Schedule a complimentary assessment. We will walk your property, evaluate your surfaces, and provide a comprehensive, transparent proposal.</p>
+                <a href="#estimate" class="btn-cta">Request An Estimate</a>
             </div>
         </section>
 
     </main>
 
-    <!-- Bottom Action Conversion Banner -->
-    <section class="conversion-banner">
-        <div class="banner-content">
-            <h2>Ready to elevate your space?</h2>
-            <p>Schedule a complimentary assessment. We will walk your property, evaluate your surfaces, and provide a comprehensive, transparent proposal.</p>
-            <button class="btn-cta" onclick="switchPage('estimate', event)">Request An Estimate</button>
-        </div>
-    </section>
-
     <footer>
         <p>&copy; 2026 Colorful Painting Co. All rights reserved. Craftsmanship Guaranteed.</p>
     </footer>
 
-    <!-- --- JavaScript Router & Lead Management --- -->
     <script>
-        // Simple client-side router to switch pages cleanly
-        function switchPage(pageId, event) {
-            if (event) event.preventDefault();
-            
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active-page'));
-            
-            // Show requested page
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active-page');
-            }
-            
-            // Update active link styling across main nav links
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Highlight matching nav link if page matches main menu items
-            const activeNavLink = document.getElementById('nav-' + pageId);
-            if (activeNavLink) {
-                activeNavLink.classList.add('active');
-            }
+        // 1. Scroll-Trigger Animation Logic (Intersection Observer)
+        const sections = document.querySelectorAll('.section-wrapper');
+        
+        const options = {
+            root: null,
+            threshold: 0.12, // Section triggers animation when 12% visible
+            rootMargin: "0px 0px -20px 0px"
+        };
 
-            // Scroll cleanly back to the top of the content area
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 2. Dynamic Header Navigation Highlighting
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Offset calculation to catch the section right as it rolls into frame
+                if (pageYOffset >= (sectionTop - 160)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
